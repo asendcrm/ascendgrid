@@ -10,9 +10,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "../ui/select";
 
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Table } from "@tanstack/react-table";
 
 interface DataTablePaginationProps<TData> {

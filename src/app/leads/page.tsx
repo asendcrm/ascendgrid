@@ -1,13 +1,13 @@
-import { DataTable } from "@/components/data-table";
-import { Leads } from "./leads-columns";
-import { LeadsColumns } from "./leads-columns";
+import { Lead } from "@/db/schema";
+import { LeadsColumns } from "./_components/LeadsColumns";
+import { LeadsTable } from "@/app/leads/_components/LeadsTable";
 import { Metadata } from "next";
 import React from "react";
 import { db } from "@/db";
 
-const getLeads = async (): Promise<Leads[]> => {
+const getLeads = async (): Promise<Lead[]> => {
   const response = await db.query.leadsTable.findMany();
-  return response as Leads[];
+  return response as Lead[];
 };
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ async function LeadsPage() {
       <div className="container">
         <h1 className="text-2xl font-bold my-4">Leads</h1>
         <div className="grid grid-cols-0 gap-4 md:grid-cols-0 px-20">
-          <DataTable columns={LeadsColumns} tableData={fetchedLeads} />
+          <LeadsTable columns={LeadsColumns} tableData={fetchedLeads} />
         </div>
       </div>
     </section>

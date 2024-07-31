@@ -18,19 +18,19 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { DataTablePagination } from "./data-table-pagination";
+import { DataTablePagination } from "@/components/data-table/data-table-pagination";
 import { updateLead } from "@/lib/lead.action";
 import { useState } from "react";
 
-interface DataTableProps<TData, TValue> {
+interface LeadsTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   tableData: TData[];
 }
 
-export function DataTable<TData, TValue>({
+export function LeadsTable<TData, TValue>({
   columns,
   tableData,
-}: DataTableProps<TData, TValue>) {
+}: LeadsTableProps<TData, TValue>) {
   const [data, setData] = useState<TData[]>(tableData);
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -40,13 +40,13 @@ export function DataTable<TData, TValue>({
   const updateData = async ({
     rowIndex,
     columnId,
-    oldValue,
     newValue,
+    itemId,
   }: {
     rowIndex: number;
-    columnId: "name" | "company" | "email";
-    oldValue: string;
+    columnId: string;
     newValue: string;
+    itemId: string;
   }) => {
     try {
       setData((prev) =>
@@ -61,9 +61,19 @@ export function DataTable<TData, TValue>({
       );
       const response = await updateLead({
         columnId,
-        oldValue,
         newValue,
+        itemId,
       });
+      if (!response.success) {
+        return {
+          success: false,
+          message: "Coudln't successfully execute updateData function",
+        };
+      }
+      return {
+        success: true,
+        message: "UpdateData function successfully executed",
+      };
     } catch (error) {
       console.log("error", error);
     }
