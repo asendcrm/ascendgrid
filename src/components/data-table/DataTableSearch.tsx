@@ -1,4 +1,4 @@
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 import React from "react";
 import { Search } from "lucide-react";
 import { Table } from "@tanstack/react-table";
@@ -10,7 +10,7 @@ interface DataTableSearchProps<TData> {
 function DataTableSearch<TData>({
   table,
   primaryField,
-  primaryFieldPrettyName
+  primaryFieldPrettyName,
 }: DataTableSearchProps<TData>) {
   return (
     <div className="relative ml-auto flex-1 md:grow-0">
@@ -18,7 +18,9 @@ function DataTableSearch<TData>({
       <Input
         type="search"
         className="w-full rounded-lg bg-background pl-8 md:w-60 lg:w-60 max-h-7"
-        placeholder={primaryFieldPrettyName ? `${primaryFieldPrettyName} Search` : "Search"}
+        placeholder={
+          primaryFieldPrettyName ? `${primaryFieldPrettyName} Search` : "Search"
+        }
         value={
           (table.getColumn(primaryField)?.getFilterValue() as string) ?? ""
         }

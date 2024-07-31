@@ -4,10 +4,12 @@ import {
   ColumnDef,
   ColumnFiltersState,
   PaginationState,
+  SortingState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import {
@@ -42,6 +44,7 @@ export function LeadsTable<TData, TValue>({
     pageSize: 12,
   });
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const updateData = async ({
     rowIndex,
@@ -90,12 +93,15 @@ export function LeadsTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    onColumnFiltersChange: setColumnFilters,
-    getFilteredRowModel: getFilteredRowModel(),
     onPaginationChange: setPagination,
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    getSortedRowModel: getSortedRowModel(),
+    onSortingChange: setSorting,
     state: {
       pagination,
       columnFilters,
+      sorting,
     },
     meta: {
       updateData,
@@ -112,7 +118,11 @@ export function LeadsTable<TData, TValue>({
               <div>
                 <DataTableViewOptions table={table} primaryField="company" />
               </div>
-              <DataTableSearch table={table} primaryField="company" primaryFieldPrettyName="Lead" />
+              <DataTableSearch
+                table={table}
+                primaryField="company"
+                primaryFieldPrettyName="Lead"
+              />
               <Button className="flex flex-row gap-1 max-h-7 max-w-28 rounded-lg ">
                 <Plus className="h-4 w-4" />
                 <span>Add Lead</span>

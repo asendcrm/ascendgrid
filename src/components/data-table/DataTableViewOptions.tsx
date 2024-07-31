@@ -6,9 +6,9 @@ import {
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "../ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Settings2 } from "lucide-react";
 import { Table } from "@tanstack/react-table";

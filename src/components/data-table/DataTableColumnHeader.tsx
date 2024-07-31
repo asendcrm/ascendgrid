@@ -10,9 +10,8 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
-import { Button } from "../ui/button";
 import { Column } from "@tanstack/react-table";
 import { cn } from "@/lib/utils";
 
@@ -35,9 +34,7 @@ export function DataTableColumnHeader<TData, TValue>({
     <div className={cn("flex items-center space-x-2", className)}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button
-            className="flex items-center h-8 select-none outline-none"
-          > 
+          <button className="flex items-center h-8 select-none outline-none">
             <span>{title}</span>
             {column.getIsSorted() === "desc" ? (
               <ArrowDownIcon className="ml-2 h-4 w-4" />
