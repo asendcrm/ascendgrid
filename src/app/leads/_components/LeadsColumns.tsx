@@ -1,11 +1,17 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { DataTableField } from "@/app/leads/_components/DataTableField";
+import { DataTableCheckbox } from "@/components/data-table/DataTableCheckbox";
+import { DataTableField } from "@/components/data-table/DataTableField";
+import { DataTableHeaderCheckbox } from "@/components/data-table/DataTableHeaderCheckbox";
 import { Lead } from "@/db/schema";
-import z from "zod";
 
 export const LeadsColumns: ColumnDef<Lead>[] = [
+  {
+    id: "select",
+    header: DataTableHeaderCheckbox,
+    cell: DataTableCheckbox,
+  },
   {
     accessorKey: "name",
     header: "Name",

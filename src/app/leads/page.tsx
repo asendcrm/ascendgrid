@@ -17,16 +17,7 @@ export const metadata: Metadata = {
 
 async function LeadsPage() {
   const fetchedLeads = await getLeads();
-  return (
-    <section className="py-2 px-10">
-      <div className="container">
-        <h1 className="text-2xl font-bold my-4">Leads</h1>
-        <div className="grid grid-cols-0 gap-4 md:grid-cols-0 px-20">
-          <LeadsTable columns={LeadsColumns} tableData={fetchedLeads} />
-        </div>
-      </div>
-    </section>
-  );
+  return <LeadsTable columns={LeadsColumns} tableData={fetchedLeads} />;
 }
 
 export default LeadsPage;

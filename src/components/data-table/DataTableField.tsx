@@ -1,21 +1,22 @@
-import { CellContext, Table } from "@tanstack/react-table";
+"use client";
+
 import React, { useEffect, useRef } from "react";
 
-import { Field } from "@/components/data-table/field";
+import { Field } from "@/components/custom/field";
 
-interface DataTableFieldProps<TData extends { id: string }> {
+interface DataTableFieldProps {
   getValue: () => any;
-  row: CellContext<TData, any>["row"];
-  column: CellContext<TData, any>["column"];
+  row: any;
+  column: any;
   table: any;
 }
 
-export function DataTableField<TData extends { id: string }>({
+export function DataTableField({
   getValue,
   row,
   column,
   table,
-}: DataTableFieldProps<TData>) {
+}: DataTableFieldProps) {
   const initialValue = getValue();
   const [active, setActive] = React.useState(false);
   const [value, setValue] = React.useState(initialValue);
@@ -24,12 +25,12 @@ export function DataTableField<TData extends { id: string }>({
   const onBlur = () => {
     table.options.meta?.updateData({
       rowIndex: row.index,
-      itemId: row.original.id,
+      itemId: row.original.id || "",
       columnId: column.id,
       newValue: value,
     });
     setValue(initialValue);
-    setActive(false); // Set active to false on blur
+    setActive(false);
   };
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export function DataTableField<TData extends { id: string }>({
         value={value || ""}
         onChange={(e) => setValue(e.target.value)}
         onBlur={onBlur}
-        readOnly={!active} // Make input read-only when not active
+        readOnly={!active}
       />
     </div>
   );
