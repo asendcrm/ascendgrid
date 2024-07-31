@@ -1,13 +1,25 @@
-import { Lead } from "@/db/schema";
 import { LeadsColumns } from "./_components/LeadsColumns";
 import { LeadsTable } from "@/app/leads/_components/LeadsTable";
 import { Metadata } from "next";
 import React from "react";
+import axios from "axios";
 import { db } from "@/db";
 
+export type Lead = {
+  id: string;
+  company: string;
+  email: string;
+  website: string;
+  address: string;
+  phone: string;
+};
+
 const getLeads = async (): Promise<Lead[]> => {
-  const response = await db.query.leadsTable.findMany();
-  return response as Lead[];
+  const response = await axios.get(
+    "https://66a6ee9d23b29e17a1a3c02d.mockapi.io/leads"
+  );
+  const { data } = response;
+  return data as Lead[];
 };
 
 export const metadata: Metadata = {

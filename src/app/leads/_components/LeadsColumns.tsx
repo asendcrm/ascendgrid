@@ -2,9 +2,10 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableCheckbox } from "@/components/data-table/DataTableCheckbox";
-import { DataTableField } from "@/components/data-table/DataTableField";
+import { DataTableColumnHeader } from "@/components/data-table/DataTableColumnHeader";
+import { DataTableField } from "@/components/data-table/custom-fields/DataTableField";
 import { DataTableHeaderCheckbox } from "@/components/data-table/DataTableHeaderCheckbox";
-import { Lead } from "@/db/schema";
+import { Lead } from "../page";
 
 export const LeadsColumns: ColumnDef<Lead>[] = [
   {
@@ -13,18 +14,30 @@ export const LeadsColumns: ColumnDef<Lead>[] = [
     cell: DataTableCheckbox,
   },
   {
-    accessorKey: "name",
-    header: "Name",
-    cell: DataTableField,
-  },
-  {
     accessorKey: "company",
-    header: "Company",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Lead Name" />
+    ),
     cell: DataTableField,
   },
   {
     accessorKey: "email",
     header: "Email",
+    cell: DataTableField,
+  },
+  {
+    accessorKey: "website",
+    header: "Website",
+    cell: DataTableField,
+  },
+  {
+    accessorKey: "phone",
+    header: "Phone",
+    cell: DataTableField,
+  },
+  {
+    accessorKey: "address",
+    header: "Address",
     cell: DataTableField,
   },
 ];

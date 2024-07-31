@@ -32,7 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/components/data-table/DataTableField.tsx"
+    "src/components/data-table/custom-fields/DataTableField.tsx"
   ],
   "exclude": [
     "node_modules"

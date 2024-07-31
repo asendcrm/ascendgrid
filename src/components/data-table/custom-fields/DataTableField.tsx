@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 
-import { Field } from "@/components/custom/field";
+import { Field } from "@/components/ui/field";
 
 interface DataTableFieldProps {
   getValue: () => any;
