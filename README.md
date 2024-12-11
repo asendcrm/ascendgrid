@@ -1,1 +1,2 @@
-This is the code for the tables you love in Ascend CRM.
+This repo was an early test for implementing tables like this with shadcn ui and tanstack tables.
+![Screenshot](images/table_ss.png)
